@@ -25,7 +25,7 @@ return {
 
 				-- Find the Git root directory from the current file's path
 				local git_root = vim.fn.systemlist('git -C ' ..
-				    vim.fn.escape(current_dir, ' ') .. ' rev-parse --show-toplevel')
+					    vim.fn.escape(current_dir, ' ') .. ' rev-parse --show-toplevel')
 				    [1]
 				if vim.v.shell_error ~= 0 then
 					print 'Not a git repository. Searching on current working directory'
@@ -54,10 +54,10 @@ return {
 			vim.keymap.set('n', '<leader>/', function()
 				-- You can pass additional configuration to telescope to change theme, layout, etc.
 				require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes')
-				.get_dropdown {
-					winblend = 10,
-					previewer = false,
-				})
+					.get_dropdown {
+						winblend = 10,
+						previewer = false,
+					})
 			end, { desc = '[/] Fuzzily search in current buffer' })
 
 			local function telescope_live_grep_open_files()
@@ -91,12 +91,12 @@ return {
 			vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps,
 				{ desc = '[S]earch [K]eymaps' })
 
-			local trouble = require("trouble.providers.telescope")
+			local trouble = require("trouble.sources.telescope")
 			require("telescope").setup {
 				defaults = {
 					mappings = {
-						i = { ["<c-t>"] = trouble.open_with_trouble },
-						n = { ["<c-t>"] = trouble.open_with_trouble },
+						i = { ["<c-t>"] = trouble.open },
+						n = { ["<c-t>"] = trouble.open },
 					},
 				},
 			}
